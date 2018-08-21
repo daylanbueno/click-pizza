@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+
+    <ul class="sidebar-menu">
+        <li>
+            <p:link href="/index.xhtml">
+                <i class="fa fa-home"></i>
+                <span>Home</span>
+            </p:link>
+        </li>
+        
+        <li class="header">
+            Pedido
+        </li>
+       
+        <li>
+	        <p:link href="/pages/default/cadastro-pedido.xhtml">
+	                <i class="fa fa-edit"></i>
+	                <span>Incluir pedido</span>
+	        </p:link>
+        </li>
+        
+        <li>
+	        <p:link href="/pages/default/lista-pedidos.xhtml">
+	                <i class="fa fa-search"></i>
+	                <span>Consulta pedido</span>
+	        </p:link>
+        </li>
+      
+        <li class="header">
+            Clientes
+        </li>
+       
+        <li>
+	        <p:link href="/pages/default/cadastro-cliente.xhtml">
+	                <i class="fa fa-edit"></i>
+	                <span>Incluir pessoa</span>
+	        </p:link>
+        </li>
+        
+        <li>
+            <p:link href="/pages/default/lista-clientes.xhtml">
+                <i class="fa fa-search"></i>
+                <span>Consultar pessoa</span>
+            </p:link>
+        </li>
+           
+    </ul>
+
+</ui:composition>

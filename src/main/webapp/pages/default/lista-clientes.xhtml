@@ -1,0 +1,105 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:adm="http://github.com/adminfaces"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="head-end">
+        <style type="text/css">
+            .ui-grid-row .ui-grid-col-2,
+            .ui-grid-row .ui-grid-col-10 {
+                padding: 0.5em 0;
+                margin-left: 10px;
+            }
+
+            .ui-orderlist .ui-orderlist-list {
+                height: auto;
+            }
+
+            .ui-orderlist .ui-grid-row .ui-grid-col-2,
+            .ui-orderlist .ui-grid-row .ui-grid-col-10 {
+                padding: 0;
+            }
+        </style>
+    </ui:define>
+
+    <ui:define name="title">
+        Pesquisa pesquisar clientes
+    </ui:define>
+
+    <ui:define name="description">
+        Pesquise ... 
+    </ui:define>
+
+    <ui:define name="body">
+        <adm:breadcrumb title="Pesquisa Default"/>
+
+			<h:form>
+            	<div class="box box-primary">
+                	<div class="box-header with-border">
+	                 <p:separator/>
+                    <h:panelGrid columns="2">
+                			<p:outputLabel value="Nome"  style="padding:10px"/>
+			                <p:inputText   class="form-control"  
+			                			   value="#{clienteBean.pessoaFisica.pessoa.usuario.email}" 
+			                			   size="70"
+			                			   placeholder="Ex: Eduardo">
+			                </p:inputText>
+			                
+			                <p:outputLabel value="Celular:" style="padding:10px" />
+			                <p:inputMask   mask="(99)9.9999-9999" 
+				                		   required="true"
+				                		   value="#{clienteBean.pessoaFisica.pessoa.contato.celular}"
+				                		   requiredMessage="O campo Celular é obrigatório"
+				                		   placeholder="Ex: (61) 9.8781-0000" 
+				                		   size="25">
+			                </p:inputMask>
+			                
+			                <p:outputLabel value="Telefone:" style="padding:10px"/>
+			                <p:inputMask   mask="(99)9999-9999"
+			                			   value="#{clienteBean.pessoaFisica.pessoa.contato.telefone}"
+		                    			   placeholder="Ex: (61) 2616-0000 " 
+		                    			   size="25">
+			                </p:inputMask>
+			     
+			         </h:panelGrid> 
+			         	<div style="margin-left: 91%;margin-right: 10%">
+				        	 <p:commandButton action="cadastro-default?faces-redirect=true" ajax="false" icon="fa fa-plus"
+	                         	              value="Pesquisar" 
+	                         	              styleClass="btn-primary"/>    
+                       </div>  
+                    
+	                 <p:dataTable id="tabelaPessoa" rows="10"	                    			 
+	                                 paginator="true" 	                                 
+	                                 paginatorPosition="bottom"	                                 
+	                                 emptyMessage="Registro não encontrado para o filtro aplicado!">
+	                               
+	
+	                        <p:ajax event="rowSelectCheckbox" update="@(.ui-button)"/>
+	                        <p:ajax event="rowUnselectCheckbox" update="@(.ui-button)"/>
+	                        <p:ajax event="rowSelect" update="@(.ui-button)"/>
+	                        <p:ajax event="rowUnselect" update="@(.ui-button)"/>
+	
+	
+	                        <p:column selectionMode="multiple" width="5%" styleClass="align-center"/>	                        
+	                        
+	                        	
+	                    </p:dataTable>
+					</div>
+	            </div>
+        	</h:form>
+        	
+        	<p:dialog header="Default Selecionadas" widgetVar="defaultSelecionadas" height="250"
+                  	  width="400" responsive="true" styleClass="box-success">
+	            <p:dataList id="listaDefaultSelecionadas" value="" var="default"
+	                        type="definition">
+
+	            </p:dataList>
+			</p:dialog>
+
+        
+    </ui:define>
+
+</ui:composition>

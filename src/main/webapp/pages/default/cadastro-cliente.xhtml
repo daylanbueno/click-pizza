@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui" xmlns:adm="http://github.com/adminfaces"
+                template="/WEB-INF/templates/template.xhtml">
+
+    <ui:define name="title">
+        Cadastro cliente
+    </ui:define>
+
+    <ui:define name="body">
+        <f:metadata>
+        </f:metadata>
+
+        <adm:breadcrumb title="Cadastro clientes" link="cadastro-cliente.xhtml?id="/>
+        <h:form id="form" prependId="false">
+            <p:focus/>
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div id="main-buttons" class="hidden-sm hidden-xs">
+                        <p:commandButton value="Salvar" update="@form"
+                                         icon="fa fa-check" styleClass="btn-success"/>
+                        <p:spacer width="5"/>
+                        <p:commandButton value="Pagina Inicial" immediate="true"
+                                         action="/index.xhtml?faces-redirect=true"
+                                         process="@this"
+                                         icon="fa fa-close"/>                                         
+                     </div>
+                    
+                    <p:splitButton value="Salvar" update="@this"
+                                   icon="fa fa-check"
+                                   styleClass="hidden-md hidden-lg btn-primary">
+                        <p:menuitem value="Excluir"
+                                    process="@this"
+                                    icon="fa fa-trash"/>
+                        <p:separator/>
+                        <p:menuitem value="Voltar" action="lista-default?faces-redirect=true" process="@this"
+                                    icon="fa fa-close"/>
+                    </p:splitButton>
+                    <p:separator/>
+
+             <p:panel styleClass="painelCadastro">
+		       	<p:growl id="msg" autoUpdate="true"  closable="true" />
+		        <p:separator/>
+		        <div class="formCadastro">
+			             <h:panelGrid columns="4"  cellpadding="10" styleClass="formLogin">
+				                <p:outputLabel for="nome" value="Nome:" style="padding:10px"/>
+				                <p:inputText  value="#{clienteBean.pessoaFisica.nome}"
+				                			  id="nome" 
+				                			  required="true" 
+				                			  class="form-control"
+				                			  size="55"
+				                			  placeholder="Ex: Marcos Silva dos Santos"
+				                			  requiredMessage="O campo Nome é obrigatório"
+				                			  onfocus="true">
+				                 </p:inputText>
+				                
+				                <p:outputLabel value="Email:"  style="padding:10px"/>
+				                <p:inputText  class="form-control"  
+				                			  value="#{clienteBean.pessoaFisica.pessoa.usuario.email}" 
+				                			  size="55"
+				                			  placeholder="Ex: email@dominio.com.br">
+				                </p:inputText>
+				                
+				                <p:outputLabel value="Celular:" style="padding:10px" />
+				                <p:inputMask class="form-control" 
+				                			mask="(99)9.9999-9999" 
+				                			required="true"
+				                			value="#{clienteBean.pessoaFisica.pessoa.contato.celular}"
+				                			requiredMessage="O campo Celular é obrigatório"
+				                			placeholder="Ex: (61) 9.8781-0000" size="55">
+				                </p:inputMask>
+				                
+				                <p:outputLabel value="Telefone:" style="padding:10px"/>
+				                <p:inputMask  class="form-control"  
+				                			  mask="(99)9999-9999"
+				                			  value="#{clienteBean.pessoaFisica.pessoa.contato.telefone}"
+			                    			  placeholder="Ex: (61) 2616-0000 " size="55">
+				                </p:inputMask>
+				             
+				                <p:outputLabel value="Data Nasc.:"  style="padding:10px"/>
+				                <p:calendar pattern="dd/mm/yyyy" locale="pt" lreadonlyInput="true" navigator="true"
+								   			value="#{clienteBean.pessoaFisica.dataNascimento}"
+											id="nascimento"
+											required="true"
+											maxdate="#{clienteBean.getDataHoje()}"
+											mask="99/99/9999"
+											requiredMessage="Preencha o campo data de nascimento">
+								</p:calendar>
+			
+			 				   <p:outputLabel value="Logradouro:" style="padding:10px" />
+				                <p:inputText class="form-control"
+				                			 value="#{clienteBean.pessoaFisica.pessoa.endereco.logradouro}"
+				                			 placeholder="Ex: Quadra 1 Conjunto C"
+				                			 required="true"
+				           				     requiredMessage="O campo Logradouro é obrigatório"
+				                			 size="70"/>
+				                
+				                <p:outputLabel value="Nº Casa/Apartamento" style="padding:10px"/>
+				                <p:inputText class="form-control" 
+				                			 value="#{clienteBean.pessoaFisica.pessoa.endereco.numero}"
+				                			 required="true"
+				           				     requiredMessage="O Número da Casa/Apartamento"
+				           				     placeholder="Ex: 23B"
+				                			 size="20">
+				                </p:inputText>
+				                
+				                <p:outputLabel value="Complemento:" style="padding:10px"/>
+				                <p:inputText  class="form-control" 
+				                			  value="#{clienteBean.pessoaFisica.pessoa.endereco.complemento}"
+				                			  placeholder="Ex: Ao lado do posto de saúde"
+				                			  size="27"/>
+					     
+				            </h:panelGrid>   
+				     	 </div>    	 
+					</p:panel>
+		           </div>
+		         </div>
+		       </h:form>
+	    </ui:define>
+
+</ui:composition>
